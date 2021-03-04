@@ -1,0 +1,82 @@
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("image/peter-schad-9xq3O3DKlyI-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .logo {
+    width: 25%;
+}
+
+header .logocap {
+    width: 50%;
+}
+
+#products {
+    padding-top: 5em;
+    transform: translateY(-3em);
+}
+
+.list-none {
+    list-style: none;
+}
+
+.menu {
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+}
+
+.menu li:hover {
+    border-bottom: 1px solid black;
+}
+
+#menu2 {
+    display: none;
+}
+
+#menu3 {
+    display: none;
+}
+
+.tokopedia-btn {
+    color: lightgreen;
+    text-decoration: none;
+    padding: 12px 0;
+    border: 2px solid lightgreen;
+    border-radius: 6px;
+    transition: 0.3s linear;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.tokopedia-btn:hover {
+    background-color: lightgreen;
+    color: white;
+}
+
+#tokopedia {
+    height: 15px;
+    width: 15px;
+}
+
+@media (max-width: 767.98px) {
+    header .logo {
+        width: 50%;
+    }
+
+    header .logocap {
+        width: 75%;
+    }
+}
