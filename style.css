@@ -1,3 +1,14 @@
+a {
+    text-decoration: none;
+}
+
+body {
+    height: 3000px;
+}
+
+nav {
+    transition: all 250ms;
+}
 header {
     background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("image/peter-schad-9xq3O3DKlyI-unsplash.jpg");
     background-repeat: no-repeat;
@@ -41,6 +52,10 @@ header .logocap {
     border-bottom: 1px solid black;
 }
 
+.activemenu {
+    border: 1px solid black;
+}
+
 #menu2 {
     display: none;
 }
@@ -49,14 +64,28 @@ header .logocap {
     display: none;
 }
 
+.carouselbg {
+    background: lightgray;
+}
+
+.carousel-item img {
+    align-items: center;
+}
+
+.shop-item-price {
+    font-size: 1.5em;
+}
+
+.shop-item-button {
+    width: 100%;
+}
+
 .tokopedia-btn {
     color: lightgreen;
-    text-decoration: none;
     padding: 12px 0;
     border: 2px solid lightgreen;
     border-radius: 6px;
-    transition: 0.3s linear;
-    width: 100%;
+    transition: 200ms linear;
     display: block;
     text-align: center;
 }
@@ -71,6 +100,115 @@ header .logocap {
     width: 15px;
 }
 
+#cart {
+    padding-top: 5em;
+    transform: translateY(-3em);
+}
+
+.price {
+    transform: translateX(-3.5vw);
+}
+
+.cart-item {
+    border-top: 1px solid black;
+}
+
+.cart-item img {
+    padding: 10px 0;
+}
+
+.cart-item .varian {
+    font-size: 0.75em;
+}
+
+.cart-price {
+    border-top: 1px solid black;
+    padding: 1em 0;
+    justify-content: center;
+}
+
+.cart-quantity {
+    border-top: 1px solid black;
+    justify-content: flex-end;
+}
+
+.cart-item-title {
+    color: #333;
+    margin-left: 0.5em;
+    font-size: 1.2em;
+}
+
+.cart-quantity-input {
+    text-align: center;
+    padding: 0;
+}
+
+.cart-column {
+    display: flex;
+    align-items: center;
+}
+
+.cart-row {
+    display: flex;
+}
+
+.cart-row:last-child {
+    border-bottom: 1px solid black;
+}
+
+.cart-column:last-child {
+    border-bottom: none;
+}
+
+.cart-total {
+    text-align: end;
+    margin: 5px auto;
+}
+
+.cart-total-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: black;
+    margin-right: 20px;
+}
+
+.cart-total-price {
+    color: #333;
+    font-size: 1.1em;
+}
+
+.temukan {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.inline-group .form-control {
+    text-align: center;
+}
+
+.form-control[type="number"]::-webkit-inner-spin-button,
+.form-control[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.btn-minus,
+.btn-plus {
+    border: none;
+}
+
+.btn-minus {
+    border-radius: 5px 0 0 5px;
+}
+
+.btn-plus {
+    border-radius: 0 5px 5px 0;
+}
+
+.purchase {
+    padding: 0;
+}
+
 @media (max-width: 767.98px) {
     header .logo {
         width: 50%;
@@ -78,5 +216,32 @@ header .logocap {
 
     header .logocap {
         width: 75%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    span.cart-item-title {
+        font-size: 0.9em;
+        transform: translateX(-2vw);
+    }
+    .cart-item img {
+        display: none;
+    }
+    .cart-quantity {
+        flex-direction: column;
+        padding: 0.5em;
+    }
+    .cart-total-title {
+        font-size: 1.3em;
+    }
+    .cart-total-price {
+        font-size: 1.1em;
+    }
+    .remove-btn {
+        width: 100%;
+        transform: translateX(-1vw);
+    }
+    .quantity-group {
+        margin-bottom: 0.5em;
     }
 }
