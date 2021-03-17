@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://potatoqyu.netlify.app/sitemap.xml
