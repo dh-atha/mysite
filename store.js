@@ -11,12 +11,6 @@ function ready() {
         button.addEventListener("click", removeCartItem);
     }
 
-    var quantityInputs = document.getElementsByClassName("cart-quantity-input");
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i];
-        input.addEventListener("change", quantityChanged);
-    }
-
     var addToCartButtons = document.getElementsByClassName("shop-item-button");
     for (var i = 0; i < addToCartButtons.length; i++) {
         var button = addToCartButtons[i];
@@ -43,24 +37,6 @@ function removeCartItem(event) {
     buttonClicked.parentElement.parentElement.remove();
     updateCartTotal();
 }
-
-function quantityChanged(event) {
-    quantityClicked();
-    var input = event.target;
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1;
-    }
-    updateCartTotal();
-}
-
-$(".btn-plus, .btn-minus").on("click", function (e) {
-    const isNegative = $(e.target).closest(".btn-minus").is(".btn-minus");
-    const input = $(e.target).closest(".input-group").find("input");
-    if (input.is("input")) {
-        input[0][isNegative ? "stepDown" : "stepUp"]();
-    }
-    updateCartTotal();
-});
 
 function addToCartClicked(event) {
     var button = event.target;
@@ -91,37 +67,49 @@ function addItemToCart(title, price, imageSrc, varian) {
         }
     }
     var cartRowContents = `
-                    <div class="cart-column cart-item col-4">
-                        <img src="${imageSrc}" alt="item1" class="w-25" />
-                        <span class="cart-item-title">${title}<br /><span class="varian">Varian: ${varian}</span></span>
-                    </div>
-                    <div class="cart-column cart-price col-3">${price}</div>
-                    <div class="cart-column cart-quantity col-4">
-                        <div class="input-group quantity-group me-2 d-flex w-50">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-danger btn-minus">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <input class="form-control cart-quantity-input" min="1" name="quantity" value="1" type="number" disabled />
-                            <div class="input-group-append">
-                                <button class="btn btn-success btn-plus">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
+                        <div class="cart-column cart-item col-4">
+                            <img src="${imageSrc}" alt="item1" class="w-25" />
+                            <span class="cart-item-title">${title}<br /><span class="varian">Varian: ${varian}</span></span>
                         </div>
-                        <button class="btn btn-outline-danger remove-btn">REMOVE</button>
-                    </div>`;
+                        <div class="cart-column cart-price col-3">${price}</div>
+                        <div class="cart-column cart-quantity col-4">
+                            <div class="input-group quantity-group me-2 d-flex w-sm-50">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-danger btn-minus btn-sm">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input class="form-control cart-quantity-input" min="1" name="quantity" value="1" type="number" disabled />
+                                <div class="input-group-append">
+                                    <button class="btn btn-success btn-plus btn-sm">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-danger btn-sm remove-btn">REMOVE</button>
+                        </div>`;
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
     cartRow.getElementsByClassName("btn-outline-danger")[0].addEventListener("click", removeCartItem);
-    $(".btn-plus, .btn-minus").on("click", function (e) {
-        const isNegative = $(e.target).closest(".btn-minus").is(".btn-minus");
-        const input = $(e.target).closest(".input-group").find("input");
-        if (input.is("input")) {
-            input[0][isNegative ? "stepDown" : "stepUp"]();
-        }
-        updateCartTotal();
+
+    // Increase Decrease input value
+    const increaseButton = cartRow.querySelectorAll(".btn-plus");
+    increaseButton.forEach((e) => {
+        const increaseButtonParent = e.parentElement.parentElement;
+        const inputElement = increaseButtonParent.querySelector("input");
+        e.addEventListener("click", function () {
+            inputElement.stepUp(1);
+            updateCartTotal();
+        });
+    });
+    const decreaseButton = cartRow.querySelectorAll(".btn-minus");
+    decreaseButton.forEach((e) => {
+        const decreaseButtonParent = e.parentElement.parentElement;
+        const inputElement = decreaseButtonParent.querySelector("input");
+        e.addEventListener("click", function () {
+            inputElement.stepDown(1);
+            updateCartTotal();
+        });
     });
 }
 
