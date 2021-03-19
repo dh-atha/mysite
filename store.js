@@ -31,9 +31,11 @@ function purchaseClicked() {
         const cartTitle = e.querySelector(".cart-item-title").innerText;
         const cartVarian = e.querySelector(".varian").innerText;
         const cartQuantity = e.querySelector(".cart-quantity-input").value;
-        console.log(cartTitle, cartVarian);
         btnPurchase.href = btnPurchase.href + cartTitle + " " + cartVarian + " sebanyak " + cartQuantity + " pcs" + "%0A";
     });
+    while (cartItems.hasChildNodes()) {
+        cartItems.removeChild(cartItems.firstChild);
+    }
     updateCartTotal();
 }
 
