@@ -2,13 +2,10 @@ a {
     text-decoration: none;
 }
 
-body {
-    height: 3000px;
-}
-
 nav {
     transition: all 250ms;
 }
+
 header {
     background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("image/peter-schad-9xq3O3DKlyI-unsplash.jpg");
     background-repeat: no-repeat;
