@@ -36,7 +36,10 @@ function purchaseClicked() {
     while (cartItems.hasChildNodes()) {
         cartItems.removeChild(cartItems.firstChild);
     }
-    updateCartTotal();
+    const cartItemsParent = cartItems.parentElement;
+    const cartTotal = cartItemsParent.querySelector(".cart-total");
+    let cartTotalPrice = cartTotal.querySelector(".cart-total-price");
+    cartTotalPrice.innerText = "Rp0,-";
 }
 
 function removeCartItem(event) {
