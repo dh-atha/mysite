@@ -22,13 +22,18 @@ function ready() {
 
 function purchaseClicked() {
     alert("Thank you for your purchase");
-    var cartItems = document.getElementsByClassName("cart-items")[0];
-    var title = cartItems.querySelectorAll("cart-item-title").innerText;
-    var varian = cartItems.querySelectorAll("varian").innerText;
-    var link = "https://wa.me/6282213604539/?text=";
-    var btnPurchase = document.querySelector(".btn-purchase");
-    btnPurchase.href = "Halo saya mau pesan%0A" + title + varian;
-    console.log(title);
+    const cartItems = document.getElementsByClassName("cart-items")[0];
+    const link = "https://wa.me/6282213604539/?text=";
+    let btnPurchase = document.querySelector(".btn-purchase");
+    btnPurchase.href = link + "Halo saya mau pesan%0A";
+    const cartRows = cartItems.querySelectorAll(".cart-row");
+    cartRows.forEach((e) => {
+        const cartTitle = e.querySelector(".cart-item-title").innerText;
+        const cartVarian = e.querySelector(".varian").innerText;
+        const cartQuantity = e.querySelector(".cart-quantity-input").value;
+        console.log(cartTitle, cartVarian);
+        btnPurchase.href = btnPurchase.href + cartTitle + " " + cartVarian + " sebanyak " + cartQuantity + " pcs" + "%0A";
+    });
     updateCartTotal();
 }
 
@@ -54,22 +59,26 @@ function addToCartClicked(event) {
 }
 
 function addItemToCart(title, price, imageSrc, varian) {
-    var cartRow = document.createElement("div");
-    cartRow.classList.add("cart-row");
-    cartRow.classList.add("row");
-    cartRow.classList.add("justify-content-between");
-    var cartItems = document.getElementsByClassName("cart-items")[0];
-    var cartItemNames = cartItems.getElementsByClassName("cart-item-title");
-    for (var i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText == title) {
-            alert("This item is already added to the cart");
-            return;
+    let cartRow = document.createElement("div");
+    const cartRowClass = ["cart-row", "row", "justify-content-between"];
+    cartRow.classList.add(...cartRowClass);
+    const cartItems = document.getElementsByClassName("cart-items")[0];
+    const cartRows = cartItems.querySelectorAll(".cart-row");
+    cartRows.forEach((e) => {
+        const cartItemName = e.querySelector(".cart-item-title");
+        const cartVarian = e.querySelector(".varian");
+        if (cartItemName.innerText.includes(title) && cartVarian.innerText.includes(varian)) {
+            alert("Item dengan varian tersebut sudah ditambahkan");
+            return (cartRow = "");
         }
-    }
-    var cartRowContents = `
+    });
+    const cartRowContents = `
                         <div class="cart-column cart-item col-4">
                             <img src="${imageSrc}" alt="item1" class="w-25" />
-                            <span class="cart-item-title">${title}<br /><span class="varian">Varian: ${varian}</span></span>
+                            <div class="d-block">
+                                <span class="cart-item-title">${title}</span>
+                                <span class="varian">Varian: ${varian}</span>
+                            </div>
                         </div>
                         <div class="cart-column cart-price col-3">${price}</div>
                         <div class="cart-column cart-quantity col-4">
@@ -90,6 +99,9 @@ function addItemToCart(title, price, imageSrc, varian) {
                         </div>`;
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
+    if (cartRow.innerText.includes(title && varian && imageSrc && price)) {
+        alert("Item " + title + " dengan varian: " + varian + " berhasil ditambahkan");
+    }
     cartRow.getElementsByClassName("btn-outline-danger")[0].addEventListener("click", removeCartItem);
 
     // Increase Decrease input value

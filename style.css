@@ -115,10 +115,11 @@ header .logocap {
 
 .cart-item img {
     padding: 10px 0;
+    margin-right: 10px;
 }
 
 .cart-item .varian {
-    font-size: 0.75em;
+    font-size: 1em;
 }
 
 .cart-price {
@@ -134,8 +135,8 @@ header .logocap {
 
 .cart-item-title {
     color: #333;
-    margin-left: 0.5em;
     font-size: 1.2em;
+    display: block;
 }
 
 .cart-quantity-input {
@@ -222,14 +223,19 @@ header .logocap {
 @media (max-width: 575.98px) {
     span.cart-item-title {
         font-size: 0.9em;
-        transform: translateX(-2vw);
+        margin: 0;
     }
     .cart-item img {
         display: none;
     }
+    .cart-item .varian {
+        font-size: 0.75em;
+        margin: 0;
+    }
     .cart-quantity {
         flex-direction: column;
         padding: 0.5em;
+        justify-content: center;
     }
     .cart-total-title {
         font-size: 1.3em;
