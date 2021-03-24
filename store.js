@@ -23,7 +23,7 @@ function ready() {
 function purchaseClicked() {
     alert("Thank you for your purchase");
     const cartItems = document.getElementsByClassName("cart-items")[0];
-    const link = "https://wa.me/6282213604539/?text=";
+    const link = "https://wa.me/6288289532856/?text=";
     let btnPurchase = document.querySelector(".btn-purchase");
     btnPurchase.href = link + "Halo saya mau pesan%0A";
     const cartRows = cartItems.querySelectorAll(".cart-row");
@@ -50,11 +50,11 @@ function removeCartItem(event) {
 
 function addToCartClicked(event) {
     var button = event.target;
-    var shopItem = button.parentElement.parentElement.parentElement;
-    var title = shopItem.getElementsByClassName("shop-item-title")[0].innerText;
+    var shopItem = button.parentElement.parentElement;
+    var title = document.getElementsByClassName("menuActive")[0].innerText;
     var price = shopItem.getElementsByClassName("shop-item-price")[0].innerText;
     var imageSrc = shopItem.getElementsByClassName("shop-item-image")[0].src;
-    var varian = document.getElementsByClassName("shop-item-variant")[0].value;
+    var varian = shopItem.getElementsByClassName("shop-item-variant")[0].value;
     if (varian == "default") {
         alert("Pilih Varian");
     } else {
@@ -74,7 +74,7 @@ function addItemToCart(title, price, imageSrc, varian) {
         const cartVarian = e.querySelector(".varian");
         if (cartItemName.innerText.includes(title) && cartVarian.innerText.includes(varian)) {
             alert("Item dengan varian tersebut sudah ditambahkan");
-            return (cartRow = "");
+            return (cartRow = undefined);
         }
     });
     const cartRowContents = `

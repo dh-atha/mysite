@@ -42,15 +42,14 @@ header .logocap {
 .menu li {
     padding: 10px;
     cursor: pointer;
-    border-bottom: 1px solid transparent;
 }
 
 .menu li:hover {
     border-bottom: 1px solid black;
 }
 
-.activemenu {
-    border: 1px solid black;
+#menu1 {
+    display: flex;
 }
 
 #menu2 {
@@ -59,6 +58,10 @@ header .logocap {
 
 #menu3 {
     display: none;
+}
+
+.menuActive {
+    border-bottom: 1px solid black;
 }
 
 .carouselbg {
@@ -205,6 +208,10 @@ header .logocap {
 
 .purchase {
     padding: 0;
+}
+
+footer {
+    height: 4em;
 }
 
 @media (max-width: 767.98px) {
